@@ -41,5 +41,5 @@ In this example we will use images from [Google's Open Images](https://storage.g
 
 We have selected only a few classes in this example to speed up the process, but of course feel free to adapt and choose the ones you want.
 
-For this first step, open the notebook `01-data_preparation.ipynb` and follow thee instructions.
+For this first step, open the notebook `01-data_preparation.ipynb` and follow the instructions.
 
