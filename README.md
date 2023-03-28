@@ -43,3 +43,8 @@ We have selected only a few classes in this example to speed up the process, but
 
 For this first step, open the notebook `01-data_preparation.ipynb` and follow the instructions.
 
+## Training the model
+
+We will do the training with the smallest base model available to save time in this example. Of course you can adapt the various hyperparameters of the training to improve the result.
+
+For this second step, open the notebook `02-model_training.ipynb` and follow the instructions.
