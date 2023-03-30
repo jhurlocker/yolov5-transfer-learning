@@ -29,9 +29,25 @@ Ultralytics have fully integrated the transfer learning process in YOLOv5, makin
 - This training should be done in a **Data Science Project** (see below why).
 - YOLOv5 is using **PyTorch**, so in RHODS it's better to start with a notebook image already including this library, rather than having to install it afterwards.
 - PyTorch is internally using shared memory (`/dev/shm`) to exchange data between its internal worker processes. However, default container engine configurations limit this memory to the bare minimum, which can make the process exhaust this memory and crash. The solution is to manually increase this memory by mounting a specific volume with enough space at this emplacement.
-  - In your Data
+  - In your Data Science Project, create a new volume that you can call `dev-shm`. The size will depend on the volume of data you need to process, so you may have to adjust. You can start with a 1GB volume.
+  - Mount this volume under any path in your workbench and start it.
+  - Shut down your workbench.
+  - Switch to the OpenShift Console, and on the left menu head for Home->API explorer.
+  - Filter the list of objects and look for **Notebook**. There may be several listed, click on the one from **kubeflow.org** group, version **v1**.
+  - Make sure you are in your project from the drop down on the top and click on **Instances**.
+  - Find and click on the instance of your workbench.
+  - Edit the YAML file and in the main container definition, change the mount point of the **dev-shm** volume to **/dev/shm**. You should end up with something like this:
+  
+    ```yaml
+    volumeMounts:
+                - mountPath: /opt/app-root/src
+                  name: pytorch
+                - mountPath: /dev/shm
+                  name: pytorch-shm
+    ```
 
-Finally, a GPU is strongly recommended for this type of training.
+  - Save the new configuration. You can now restart your workbench and the volume will be mounted at the right location.
+- Finally, a GPU is strongly recommended for this type of training.
 
 ## Prepare the DataSet
 
