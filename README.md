@@ -40,10 +40,10 @@ Ultralytics have fully integrated the transfer learning process in YOLOv5, makin
   
     ```yaml
     volumeMounts:
-                - mountPath: /opt/app-root/src
-                  name: pytorch
-                - mountPath: /dev/shm
-                  name: pytorch-shm
+      - mountPath: /opt/app-root/src
+        name: pytorch
+      - mountPath: /dev/shm
+        name: pytorch-shm
     ```
 
   - Save the new configuration. You can now restart your workbench and the volume will be mounted at the right location.
